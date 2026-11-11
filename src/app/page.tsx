@@ -112,7 +112,7 @@ export default function LandingPage() {
   const talkToSalesBorderColor = darkMode ? "#FFFFFF" : "#000000";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 text-gray-900 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 dark:text-gray-100 relative overflow-x-hidden">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-blue-50 text-gray-900 dark:bg-linear-to-br dark:from-gray-900 dark:to-gray-800 dark:text-gray-100 relative overflow-x-hidden">
       <Header
         darkMode={darkMode}
         toggleTheme={toggleTheme}

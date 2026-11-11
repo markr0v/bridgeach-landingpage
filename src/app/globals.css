@@ -76,6 +76,151 @@
   }
 }
 
+/* Circuit board grid + travelling energy pulses (Contact "Ready to get started?" card) */
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.8);
+  paint-order: stroke fill;
+}
+
+.dark .text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+}
+
+.circuit-grid {
+  background-image:
+    linear-gradient(to right, rgba(49, 128, 252, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(49, 128, 252, 0.015) 1px, transparent 1px),
+    linear-gradient(to right, rgba(49, 128, 252, 0.015) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(49, 128, 252, 0.015) 1.5px, transparent 1.5px);
+  background-size:
+    40px 40px,
+    40px 40px,
+    200px 200px,
+    200px 200px;
+  animation: circuit-grid-fade 5s ease-in-out infinite alternate;
+}
+
+/* Grid breathes between 0% and its 1.5% line colour */
+@keyframes circuit-grid-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.dark .circuit-grid {
+  background-image:
+    linear-gradient(to right, rgba(125, 183, 253, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(125, 183, 253, 0.015) 1px, transparent 1px),
+    linear-gradient(to right, rgba(125, 183, 253, 0.015) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(125, 183, 253, 0.015) 1.5px, transparent 1.5px);
+}
+
+.circuit-trace {
+  stroke: rgba(49, 128, 252, 0.015);
+  animation: circuit-grid-fade 5s ease-in-out infinite alternate;
+}
+
+.dark .circuit-trace {
+  stroke: rgba(125, 183, 253, 0.015);
+}
+
+/* Active pathway under a running light (fades with the light itself) */
+.circuit-route {
+  stroke: rgba(49, 128, 252, 0.12);
+}
+
+.dark .circuit-route {
+  stroke: rgba(125, 183, 253, 0.1);
+}
+
+.circuit-pulse {
+  stroke: rgba(34, 211, 238, 0.6);
+  stroke-dasharray: 240 760;
+  animation-name: circuit-run;
+  animation-duration: var(--circuit-duration, 1.2s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: var(--circuit-delay, 0s);
+}
+
+/* Fades the light + its pathway in and out together, so route changes never pop */
+.circuit-fade {
+  animation: circuit-fade var(--circuit-duration, 1.2s) ease-in-out infinite;
+  animation-delay: var(--circuit-delay, 0s);
+}
+
+/* Runs on the wrapper so it only affects the light + its glow */
+.circuit-hue {
+  animation: circuit-hue 6s linear infinite;
+  animation-delay: var(--circuit-delay, 0s);
+}
+
+/* Light fades in as it appears and fades out as it reaches the finish */
+@keyframes circuit-fade {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circuit-run {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* Cycles the pulse + its glow through the full RGB spectrum */
+@keyframes circuit-hue {
+  from {
+    filter: drop-shadow(0 0 4px rgba(34, 211, 238, 0.5)) hue-rotate(0deg);
+  }
+
+  to {
+    filter: drop-shadow(0 0 4px rgba(34, 211, 238, 0.5)) hue-rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circuit-grid,
+  .circuit-trace {
+    animation: none;
+    opacity: 1;
+  }
+
+  .circuit-pulse,
+  .circuit-hue,
+  .circuit-fade {
+    animation: none;
+  }
+
+  .circuit-pulse {
+    opacity: 0;
+  }
+}
+
 /* Aurora Effect Animation */
 @keyframes aurora-move {
   0% {

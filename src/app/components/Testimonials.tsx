@@ -190,9 +190,10 @@ const Testimonials = () => {
   };
 
   return (
+    // NOTE: Section hidden on request (not deleted). Remove the "hidden" class to show it again.
     <section
       id="testimonials"
-      className="aurora-bg bg-linear-to-b from-white to-blue-50 py-20 dark:from-gray-900 dark:to-gray-800"
+      className="hidden aurora-bg bg-linear-to-b from-white to-blue-50 py-20 dark:from-gray-900 dark:to-gray-800"
     >
       <style jsx>{`
         /* Hide scrollbar for Chrome, Safari and Opera */
